@@ -7,6 +7,6 @@ export const passwordHash = (payload: CreatePayload) => {
     return payload
 }
 
-export const passwordCompare = () => {
-
+export const passwordCompare = (password: string, hasPassword: string) => {
+    return bcrypt.compareSync(password, hasPassword)
 }

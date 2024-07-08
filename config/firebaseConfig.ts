@@ -33,6 +33,7 @@ const serviceAccount: admin.ServiceAccount = {
     universe_domain: FIREBASE_UNIVERSE_DOMAIN
 };
 
+
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 })

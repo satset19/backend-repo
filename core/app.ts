@@ -1,21 +1,22 @@
 import express from 'express';
-import { Controller } from '../controller/api';
 import cors from "cors"
 import * as dotenv from "dotenv"
+import { user } from '../routes/userRoutes';
+import { auth } from '../routes/auth';
+import { errorHandler } from '../entities/ApiError';
 
 dotenv.config()
 
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
-
-app.post('/', Controller.createUser)
-
-app.post('/login', Controller.login)
+app.use("/user", user)
+app.use('/auth', auth)
+app.use(errorHandler)
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
